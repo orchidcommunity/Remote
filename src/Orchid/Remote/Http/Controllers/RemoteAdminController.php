@@ -7,7 +7,6 @@ use Orchid\Http\Controllers\Controller;
 
 class RemoteAdminController extends Controller
 {
-
     /**
      * @param         $service
      * @param Request $request
@@ -33,8 +32,6 @@ class RemoteAdminController extends Controller
         $response = $service->send('create', 'GET', $request->except('_token'));
         $response['service'] = $service->service;
 
-
-
         return view('remote::create', $response);
     }
 
@@ -49,10 +46,8 @@ class RemoteAdminController extends Controller
         $response = $service->send('', 'POST', $request->except('_token'));
         $service = $service->service;
 
-        return redirect()->route('dashboard.remote.{remote}.store', $service['service']. '-'. $service['route']);
+        return redirect()->route('dashboard.remote.{remote}.store', $service['service'].'-'.$service['route']);
     }
-
-
 
     /**
      * @param $service
@@ -62,9 +57,8 @@ class RemoteAdminController extends Controller
      */
     public function edit($service, $slug, Request $request)
     {
-        $response = $service->send($slug . '/edit', 'GET', $request->except('_token'));
+        $response = $service->send($slug.'/edit', 'GET', $request->except('_token'));
         $response['service'] = $service->service;
-
 
         return view('remote::edit', $response);
     }
@@ -81,10 +75,8 @@ class RemoteAdminController extends Controller
         $service->send($slug, 'PUT', $request->except('_token'));
         $service = $service->service;
 
-        return redirect()->route('dashboard.remote.{remote}.store', $service['service']. '-'. $service['route']);
-
+        return redirect()->route('dashboard.remote.{remote}.store', $service['service'].'-'.$service['route']);
     }
-
 
     /**
      * @param $service
@@ -98,9 +90,6 @@ class RemoteAdminController extends Controller
 
         $service = $service->service;
 
-        return redirect()->route('dashboard.remote.{remote}.store', $service['service']. '-'. $service['route']);
-
+        return redirect()->route('dashboard.remote.{remote}.store', $service['service'].'-'.$service['route']);
     }
-
-
 }
