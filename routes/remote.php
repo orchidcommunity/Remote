@@ -19,32 +19,28 @@ $this->group([
     //    'as' => 'dashboard.remote',
     //]);
 
-
     $router->get('/{remote}', [
-        'as' => 'dashboard.remote.{remote}.index',
+        'as'   => 'dashboard.remote.{remote}.index',
         'uses' => 'RemoteAdminController@index',
     ]);
     $router->post('/{remote}', [
-        'as' => 'dashboard.remote.{remote}.store',
+        'as'   => 'dashboard.remote.{remote}.store',
         'uses' => 'RemoteAdminController@store',
     ]);
     $router->get('/{remote}/create', [
-        'as' => 'dashboard.remote.{remote}.create',
+        'as'   => 'dashboard.remote.{remote}.create',
         'uses' => 'RemoteAdminController@create',
     ]);
     $router->get('/{remote}/{remote_slug}/edit', [
-        'as' => 'dashboard.remote.{remote}.edit',
+        'as'   => 'dashboard.remote.{remote}.edit',
         'uses' => 'RemoteAdminController@edit',
     ]);
     $router->put('/{remote}/{remote_slug}', [
-        'as' => 'dashboard.remote.{remote}.update',
+        'as'   => 'dashboard.remote.{remote}.update',
         'uses' => 'RemoteAdminController@update',
     ]);
     $router->delete('/{remote}/{remote_slug}', [
-        'as' => 'dashboard.remote.{remote}.destroy',
+        'as'   => 'dashboard.remote.{remote}.destroy',
         'uses' => 'RemoteAdminController@destroy',
     ]);
-
-
-
 });

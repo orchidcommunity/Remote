@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 
 class RemoteService
 {
-
     /**
      * @var
      */
@@ -16,12 +15,13 @@ class RemoteService
      * @param $service
      * @param $route
      *
-     * @return $this
      * @throws \Exception
+     *
+     * @return $this
      */
     public function registration($service, $route)
     {
-        $this->service = config('services.integrator.' . $service, false);
+        $this->service = config('services.integrator.'.$service, false);
 
         if ($this->service === false) {
             throw new \Exception('Service not found');
@@ -42,13 +42,13 @@ class RemoteService
      */
     public function send($path = '', $method = 'GET', $query = [])
     {
-        $path = '/' . $path;
+        $path = '/'.$path;
 
         $client = new Client([
             'timeout' => 3.0,
         ]);
 
-        $url = $this->service['url'] . '/integrator/' . $this->service['route'] . $path;
+        $url = $this->service['url'].'/integrator/'.$this->service['route'].$path;
 
         $response = $client->request($method, $url, [
             'query' => $query,
@@ -57,7 +57,6 @@ class RemoteService
 
         return json_decode($response, true);
     }
-
 
     /**
      * @param $fields
@@ -69,15 +68,14 @@ class RemoteService
     {
         $form = '';
         foreach ($fields as $field => $config) {
-
             $config['lang'] = app()->getLocale();
             $config['value'] = collect($data)->get($field);
             $config = collect($config);
 
-            $field = config('content.fields.' . $config['tag']);
+            $field = config('content.fields.'.$config['tag']);
 
             if (is_null($field)) {
-                throw new TypeException('Field ' . $config['tag'] . ' does not exist');
+                throw new TypeException('Field '.$config['tag'].' does not exist');
             }
 
             $field = new $field();
@@ -87,5 +85,4 @@ class RemoteService
 
         return $form;
     }
-
 }
