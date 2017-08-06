@@ -26,13 +26,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Route::bind('remote', function ($value,$test) {
+        Route::bind('remote', function ($value, $test) {
+            $param = explode('-', $value);
 
-            $param = explode("-", $value);
-
-            return (new RemoteService())->registration($param[0],$param[1]);
+            return (new RemoteService())->registration($param[0], $param[1]);
         });
-
     }
 
     /**
@@ -42,6 +40,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->loadRoutesFrom(__DIR__ . '/../../../../routes/remote.php');
+        $this->loadRoutesFrom(__DIR__.'/../../../../routes/remote.php');
     }
 }

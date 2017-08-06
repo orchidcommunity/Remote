@@ -14,17 +14,16 @@ class RemoteServiceProvider extends ServiceProvider
         $this->registerProviders();
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/vendor/orchid/dashboard';
+            return $path.'/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            __DIR__ . '/../../../../resources/views',
+            __DIR__.'/../../../../resources/views',
         ]), 'remote');
 
         $this->registerProviders();
-
     }
 
     /**
-     * registerProviders
+     * registerProviders.
      */
     public function registerProviders()
     {
@@ -42,8 +41,7 @@ class RemoteServiceProvider extends ServiceProvider
     {
         return [
             RouteServiceProvider::class,
-            MenuServiceProvider::class
+            MenuServiceProvider::class,
         ];
     }
-
 }
